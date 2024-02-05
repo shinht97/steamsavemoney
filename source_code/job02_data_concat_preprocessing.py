@@ -48,7 +48,7 @@ stop_df = pd.read_csv("../stopwords.csv")
 
 stopwords = list(stop_df["stopword"])
 
-stopwords += ["게시일", "월", "일"]
+stopwords += ["게시일", "월", "일", "게시", "액세스"]
 
 cleaned_sentences = []
 
@@ -74,5 +74,11 @@ for idx, review in enumerate(full_df["reviews"]):
     cleaned_sentences.append(cleaned_sentence)
 
 save_df = pd.DataFrame({"titles" : full_df["titles"], "reviews" : cleaned_sentences})
+
+save_df.to_csv("../cleaned_review.csv", index=False)
+
+save_df = pd.read_csv("../cleaned_review.csv")
+
+save_df.dropna(inplace=True)
 
 save_df.to_csv("../cleaned_review.csv", index=False)
