@@ -21,14 +21,14 @@ service = ChromeService(executable_path=ChromeDriverManager().install())
 
 driver = webdriver.Chrome(service=service, options=options)
 
-
-
 url_df = pd.read_csv("../steam.csv")
 
 reviews = []
 
-for i, url in enumerate(list(url_df["reviewlinks"][335:667])):
-    print(url[:-24])
+titles = []
+
+for i, url in enumerate(list(url_df["reviewlinks"][:335])):
+    print(i, url[:-24])
 
     driver.get(url[:-24])
     time.sleep(0.5)
@@ -77,8 +77,16 @@ for i, url in enumerate(list(url_df["reviewlinks"][335:667])):
     print(f"{review}")
 
     reviews.append(review)
+    titles.append(url_df["titles"][i])
+
+    if i % 30 == 0:
+        temp_df = pd.DataFrame({"titles": titles, "reviews": reviews})
+        temp_df.to_csv(f"../review_data_{i}.csv", index=False)
+
+        titles = []
+        reviews = []
 
 print(f"개임 리뷰 총 개수 {len(reviews)}")
 
-temp_df = pd.DataFrame({"titles": url_df["reviewlinks"][335:667], "reviews": reviews})
-temp_df.to_csv(f"../review_data_0_334.csv", index=False)
+# temp_df = pd.DataFrame({"titles": url_df["reviewlinks"][:335], "reviews": reviews})
+# temp_df.to_csv(f"../review_data_0_334.csv", index=False)
