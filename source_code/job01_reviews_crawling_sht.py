@@ -27,7 +27,7 @@ url_df = pd.read_csv("../steam.csv")
 
 reviews = []
 
-for i, url in enumerate(list(url_df["reviewlinks"][:335])):
+for i, url in enumerate(list(url_df["reviewlinks"][335:667])):
     print(url[:-24])
 
     driver.get(url[:-24])
@@ -80,5 +80,5 @@ for i, url in enumerate(list(url_df["reviewlinks"][:335])):
 
 print(f"개임 리뷰 총 개수 {len(reviews)}")
 
-temp_df = pd.DataFrame({"titles": url_df["reviewlinks"][:335], "reviews": reviews})
+temp_df = pd.DataFrame({"titles": url_df["reviewlinks"][335:667], "reviews": reviews})
 temp_df.to_csv(f"../review_data_0_334.csv", index=False)
