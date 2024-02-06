@@ -46,8 +46,8 @@
     <rect>
      <x>180</x>
      <y>90</y>
-     <width>341</width>
-     <height>51</height>
+     <width>351</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="font">
@@ -94,8 +94,8 @@ QListView
     <rect>
      <x>540</x>
      <y>90</y>
-     <width>171</width>
-     <height>51</height>
+     <width>181</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="font">
@@ -164,6 +164,22 @@ background-color:rgb(84, 156, 200);</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>100</y>
+     <width>41</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:rgb(84, 156, 200);</string>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

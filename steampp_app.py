@@ -29,6 +29,9 @@ class Exam(QWidget, form_window):
         self.label_3.setPixmap(QPixmap("./steam_2.jpg"))
         self.label_3.setScaledContents(True)
 
+        self.label_4.setPixmap(QPixmap("./DD.png"))
+        self.label_4.setScaledContents(True)
+
         # -------------------------------------------------------------
         self.Tfidf_matrix = mmread('./models/Tfidf_review.mtx').tocsr()
         with open('./models/tfidf.pickle', 'rb') as f:
