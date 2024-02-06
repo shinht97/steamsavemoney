@@ -23,11 +23,12 @@ class Exam(QWidget, form_window):
         self.game_list = pd.read_csv("./steam.csv")
 
         # 이미지 넣기---------------------------------------------------
-        self.label_2.setPixmap(QPixmap("./steam.jpg"))
+        self.label_2.setPixmap(QPixmap("./steam.png"))
         self.label_2.setScaledContents(True)
 
         self.label_3.setPixmap(QPixmap("./steam_2.jpg"))
         self.label_3.setScaledContents(True)
+
         # -------------------------------------------------------------
         self.Tfidf_matrix = mmread('./models/Tfidf_review.mtx').tocsr()
         with open('./models/tfidf.pickle', 'rb') as f:

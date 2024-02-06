@@ -6,18 +6,25 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>839</width>
-    <height>841</height>
+    <width>736</width>
+    <height>819</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Steam</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>ssteam.png</normaloff>ssteam.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:rgb(27, 40, 56);</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>10</y>
+     <x>180</x>
+     <y>20</y>
      <width>391</width>
      <height>51</height>
     </rect>
@@ -27,6 +34,9 @@
      <pointsize>19</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
    <property name="text">
     <string>오직! 당신만을 위한!! 게임 추천!!!</string>
    </property>
@@ -34,9 +44,9 @@
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>100</y>
-     <width>231</width>
+     <x>180</x>
+     <y>90</y>
+     <width>341</width>
      <height>51</height>
     </rect>
    </property>
@@ -45,14 +55,31 @@
      <pointsize>20</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+
+background-color:rgb(49, 98, 130);
+
+selection-background-color: rgb(49, 98, 130);
+
+QListView
+{
+	color: rgb(255, 255, 255);
+}
+
+
+
+
+</string>
+   </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>60</y>
-     <width>341</width>
-     <height>141</height>
+     <y>20</y>
+     <width>140</width>
+     <height>140</height>
     </rect>
    </property>
    <property name="text">
@@ -65,16 +92,20 @@
   <widget class="QPushButton" name="btn_recommendation">
    <property name="geometry">
     <rect>
-     <x>470</x>
-     <y>220</y>
+     <x>540</x>
+     <y>90</y>
      <width>171</width>
-     <height>41</height>
+     <height>51</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <pointsize>20</pointsize>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color:rgb(84, 156, 200);</string>
    </property>
    <property name="text">
     <string>추천</string>
@@ -83,22 +114,22 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>230</y>
-     <width>351</width>
-     <height>151</height>
+     <x>10</x>
+     <y>500</y>
+     <width>701</width>
+     <height>390</height>
     </rect>
    </property>
    <property name="text">
-    <string>스팀 짤</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLineEdit" name="le_keyword">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>170</y>
-     <width>621</width>
+     <x>10</x>
+     <y>180</y>
+     <width>711</width>
      <height>41</height>
     </rect>
    </property>
@@ -107,20 +138,26 @@
      <pointsize>17</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
   </widget>
   <widget class="QLabel" name="lbl_recommendation">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>430</y>
-     <width>861</width>
-     <height>321</height>
+     <y>230</y>
+     <width>691</width>
+     <height>261</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <pointsize>17</pointsize>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>추천 목록</string>
