@@ -46,6 +46,8 @@ class Exam(QWidget, form_window):
         self.titles = list(self.df_reviews['titles'])
         self.titles.sort()
         
+        self.titles.insert(0, "게임 선택")
+
         combobox_model = self.cmb_gamelist.model()
         for title in self.titles:
             item = QStandardItem(title)
@@ -99,30 +101,33 @@ class Exam(QWidget, form_window):
                 # 추천중 선택한 장르가 있는 게임만 출력
                 print(f"{self.cmb_genrelist.currentText()}가 선택됨")
                 recommendations = self.recommendation_by_keyword(key_word)
+                if recommendations != "그럼 게임 없어요...":
+                    recommend_with_genre = ""
+                    print("debug 1")
+                    for temp_reco in recommendations.split("\n"):
+                        print(temp_reco)
+                        game_idx = self.df_reviews[self.df_reviews['titles'] == temp_reco].index[0]
+                        if self.cmb_genrelist.currentText() in eval(self.df_reviews.at[game_idx, "genres"]):
+                            recommend_with_genre = recommend_with_genre + "\n" + temp_reco
+                    print(recommend_with_genre)
 
-                recommend_with_genre = ""
-                print("debug 1")
-                for temp_reco in recommendations.split("\n"):
-                    print(temp_reco)
-                    game_idx = self.df_reviews[self.df_reviews['titles'] == temp_reco].index[0]
-                    if self.cmb_genrelist.currentText() in eval(self.df_reviews.at[game_idx, "genres"]):
-                        recommend_with_genre = recommend_with_genre + "\n" + temp_reco
-                print(recommend_with_genre)
-
-                if recommend_with_genre == "":
-                    recommendation = "조건을 만족하는 게임이 없습니다."
+                    if recommend_with_genre == "":
+                        recommendation = "조건을 만족하는 게임이 없습니다."
+                    else:
+                        recommendation = recommend_with_genre
                 else:
-                    recommendation = recommend_with_genre
+                    recommendation = recommendations
 
         self.lbl_recommendation.setText(recommendation)
 
     def combobox_slot(self):
-        title = self.comboBox.currentText()
-        print(title)
-        recommendation = self.recommendatio_by_movie_title(title)
-        print('debug01')
-        self.lbl_recommendation.setText(recommendation)
-        print('debug02')
+        title = self.cmb_gamelist.currentText()
+        if title != "게임 선택":
+            print(title)
+            recommendation = self.recommendation_by_movie_title(title)
+            print('debug01')
+            self.lbl_recommendation.setText(recommendation)
+            print('debug02')
 
     def recommendation_by_keyword(self, key_word):
         try:
@@ -153,7 +158,7 @@ class Exam(QWidget, form_window):
 
         return recommendation
 
-    def recommendatio_by_movie_title(self, title):
+    def recommendation_by_movie_title(self, title):
         movie_idx = self.df_reviews[self.df_reviews['titles'] == title].index[0]
         cosine_sim = linear_kernel(self.Tfidf_matrix[movie_idx], self.Tfidf_matrix)
         recommendation = self.getRecommendation(cosine_sim)
