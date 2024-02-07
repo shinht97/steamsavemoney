@@ -53,6 +53,7 @@ for i in range(1, 1001):
         print(f"\r링크 따는 중 {i/1001 * 100}%", end="")
 
     game_link = driver.find_element(By.XPATH, f'//*[@id="search_resultsRows"]/a[{i}]').get_attribute("href")
+    # 해당하는 element에 있는 href 값을 가져오
     game_links.append(game_link)
 
     game_title = driver.find_element(By.XPATH, f'//*[@id="search_resultsRows"]/a[{i}]/div[2]/div[1]/span').text

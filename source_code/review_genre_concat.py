@@ -17,6 +17,7 @@ print(len(genre_df))
 print(len(review_df))
 
 concated_df = pd.merge(review_df, genre_df, how="inner", left_on="titles", right_on="titles")
+# cleaned_review에 있는 게임만 장르를 적용
 
 print(concated_df.head())
 concated_df.info()
