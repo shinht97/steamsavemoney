@@ -24,14 +24,14 @@ class Exam(QWidget, form_window):
         self.game_list = pd.read_csv("./steam.csv")
 
         # 이미지 넣기---------------------------------------------------
-        self.label_2.setPixmap(QPixmap("./steam.png"))
+        self.label_2.setPixmap(QPixmap("./steam.jpg"))
         self.label_2.setScaledContents(True)
-
-        self.label_3.setPixmap(QPixmap("./steam_2.jpg"))
-        self.label_3.setScaledContents(True)
 
         self.label_4.setPixmap(QPixmap("./DD.png"))
         self.label_4.setScaledContents(True)
+
+        self.label_5.setPixmap(QPixmap("./Ro.png"))
+        self.label_5.setScaledContents(True)
 
         # -------------------------------------------------------------
         self.Tfidf_matrix = mmread('./models/Tfidf_review.mtx').tocsr()
@@ -52,7 +52,7 @@ class Exam(QWidget, form_window):
         for title in self.titles:
             item = QStandardItem(title)
             item.setForeground(QColor(255, 255, 255))
-            item.setBackground(QColor(49, 98, 130))
+            item.setBackground(QColor(50, 53, 60))
             combobox_model.appendRow(item)
 
         # ---------- 장르 리스트를 콤보 박스에 넣기
@@ -72,7 +72,7 @@ class Exam(QWidget, form_window):
         for genre in list_genres:
             item = QStandardItem(genre)
             item.setForeground(QColor(255, 255, 255))
-            item.setBackground(QColor(49, 98, 130))
+            item.setBackground(QColor(50, 53, 60))
             genre_model.appendRow(item)
 
         # --------- 자동 완성 ----------------------------------
