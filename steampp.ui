@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>612</width>
-    <height>768</height>
+    <height>352</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -74,10 +74,10 @@ selection-background-color:rgb(50, 53, 60);
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>30</x>
      <y>20</y>
      <width>161</width>
-     <height>51</height>
+     <height>61</height>
     </rect>
    </property>
    <property name="text">
@@ -126,32 +126,6 @@ background-color:rgb(43, 119, 255);</string>
    <property name="styleSheet">
     <string notr="true">color: rgb(255, 255, 255);
 background-color:rgb(50, 53, 60);</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lbl_recommendation">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>350</y>
-     <width>701</width>
-     <height>381</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>20</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color:rgba(255, 255, 255, 80)</string>
-   </property>
-   <property name="text">
-    <string>추천 목록</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
@@ -286,7 +260,6 @@ background-color:rgb(50, 53, 60);</string>
   <zorder>label_2</zorder>
   <zorder>btn_recommendation</zorder>
   <zorder>le_keyword</zorder>
-  <zorder>lbl_recommendation</zorder>
   <zorder>cmb_genrelist</zorder>
   <zorder>label_5</zorder>
   <zorder>label_6</zorder>

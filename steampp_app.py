@@ -12,13 +12,12 @@ from PyQt5.QtWidgets import QListView
 
 
 form_window = uic.loadUiType('./steampp.ui')[0]
+recommend_window = uic.loadUiType("./dialog.ui")[0]
 
 
 class Exam(QWidget, form_window):
     def __init__(self):
-
         super().__init__()
-
         self.setupUi(self)
 
         self.game_list = pd.read_csv("./steam.csv")
@@ -93,17 +92,16 @@ class Exam(QWidget, form_window):
         print(key_word)
 
         if key_word in self.titles:
-            recommendation = self.recommendatio_by_movie_title(key_word)
+            self.recommendation = self.recommendatio_by_movie_title(key_word)
         else:
             if self.cmb_genrelist.currentText() == "장르 미선택":
-                recommendation = self.recommendation_by_keyword(key_word)
+                self.recommendation = self.recommendation_by_keyword(key_word)
             else:
                 # 추천중 선택한 장르가 있는 게임만 출력
                 print(f"{self.cmb_genrelist.currentText()}가 선택됨")
                 recommendations = self.recommendation_by_keyword(key_word)
                 if recommendations != "그럼 게임 없어요...":
                     recommend_with_genre = ""
-                    print("debug 1")
                     for temp_reco in recommendations.split("\n"):
                         print(temp_reco)
                         game_idx = self.df_reviews[self.df_reviews['titles'] == temp_reco].index[0]
@@ -112,29 +110,35 @@ class Exam(QWidget, form_window):
                     print(recommend_with_genre)
 
                     if recommend_with_genre == "":
-                        recommendation = "조건을 만족하는 게임이 없습니다."
+                        self.recommendation = "조건을 만족하는 게임이 없습니다."
                     else:
-                        recommendation = recommend_with_genre
+                        self.recommendation = recommend_with_genre
                 else:
-                    recommendation = recommendations
+                    self.recommendation = recommendations
 
-        self.lbl_recommendation.setText(recommendation)
+        secondwindow = secondWindow(self.recommendation)
+
+        secondwindow.exec_()
+
+        # self.lbl_recommendation.setText(recommendation)
 
     def combobox_slot(self):
         title = self.cmb_gamelist.currentText()
         if title != "게임 선택":
             print(title)
-            recommendation = self.recommendation_by_movie_title(title)
-            print('debug01')
-            self.lbl_recommendation.setText(recommendation)
-            print('debug02')
+            self.recommendation = self.recommendation_by_movie_title(title)
+
+            print(self.recommendation)
+            # self.lbl_recommendation.setText(recommendation)
+            secondwindow = secondWindow(self.recommendation)
+
+            secondwindow.exec_()
 
     def recommendation_by_keyword(self, key_word):
         try:
             sim_word = self.embedding_model.wv.most_similar(key_word, topn=10)
         except:
             return '그럼 게임 없어요...'
-
 
         words = [key_word]
 
@@ -175,6 +179,17 @@ class Exam(QWidget, form_window):
         recmovieList = self.df_reviews.iloc[movieIdx, 0]
 
         return recmovieList[1:]
+
+
+class secondWindow(QDialog, recommend_window):
+    def __init__(self, recommendation):
+        super(secondWindow, self).__init__()
+        self.setupUi(self)
+        self.show()
+        print(recommendation)
+        self.label_image.setPixmap(QPixmap("./ssteam.png"))
+        self.label_image.setScaledContents(True)
+        self.lbl_recommendation.setText(recommendation)
 
 
 if __name__ == '__main__':
