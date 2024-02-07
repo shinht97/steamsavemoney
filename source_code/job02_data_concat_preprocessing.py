@@ -4,39 +4,36 @@ from konlpy.tag import Okt
 
 game_df = pd.read_csv("../steam.csv")
 
+game_df.reset_index(inplace=True)
+
+files = glob.glob("../review_data*.csv")
+
 full_df = pd.DataFrame()
 
-# files = glob.glob("../review_data*.csv")
-#
-# for file in files:
-#     temp_df = pd.read_csv(file)
-#     full_df = pd.concat([full_df, temp_df], ignore_index=True)
-
-df_0 = pd.read_csv("../review_data_0.csv")
-
-full_df = pd.concat([full_df, df_0], ignore_index=True)
-
-df_30 = pd.read_csv("../review_data_0.csv")
-
-full_df = pd.concat([full_df, df_30], ignore_index=True)
-
-df_60 = pd.read_csv("../review_data_0.csv")
-
-full_df = pd.concat([full_df, df_60], ignore_index=True)
-
-df_90 = pd.read_csv("../review_data_0.csv")
-
-full_df = pd.concat([full_df, df_90], ignore_index=True)
+for file in files:
+    if file.count("_") != 3:
+        temp_df = pd.read_csv(file)
+        full_df = pd.concat([full_df, temp_df], ignore_index=True)
 
 df_334 = pd.read_csv("../review_data_334_667.csv")
 
-df_temp1 = pd.DataFrame({"titles" : list(game_df["titles"][335:667]), "reviews" : list(df_334["reviews"])})
+df_334.reset_index(inplace=True)
+
+print(len(game_df["titles"][334:665]))
+print(len(df_334["reviews"]))
+
+df_temp1 = pd.DataFrame({"titles" : list(game_df["titles"][334:665]), "reviews" : list(df_334["reviews"])})
 
 full_df = pd.concat([full_df, df_temp1], ignore_index=True)
 
 df_667 = pd.read_csv("../review_data_667_1001.csv")
 
-df_temp2 = pd.DataFrame({"titles" : list(game_df["titles"][667:1001]), "reviews" : list(df_667["reviews"])})
+df_667.reset_index(inplace=True)
+
+print(len(game_df["titles"][665:]))
+print(len(df_667["reviews"]))
+
+df_temp2 = pd.DataFrame({"titles" : list(game_df["titles"][665:]), "reviews" : list(df_667["reviews"])})
 
 full_df = pd.concat([full_df, df_temp2], ignore_index=True)
 
@@ -48,7 +45,7 @@ stop_df = pd.read_csv("../stopwords.csv")
 
 stopwords = list(stop_df["stopword"])
 
-stopwords += ["게시일", "월", "일", "게시", "액세스"]
+stopwords += ["게시일", "월", "일", "게시", "액세스", "조기"]
 
 cleaned_sentences = []
 

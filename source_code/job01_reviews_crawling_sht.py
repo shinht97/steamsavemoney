@@ -16,6 +16,7 @@ options = ChromeOptions()
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
 options.add_argument(f"--user-agent={user_agent}")
 options.add_argument("--lang=ko_KR")
+# options.add_argument("headless")
 
 service = ChromeService(executable_path=ChromeDriverManager().install())
 
@@ -27,8 +28,11 @@ reviews = []
 
 titles = []
 
-for i, url in enumerate(list(url_df["reviewlinks"][:335])):
-    print(i, url[:-24])
+start = 211
+end = 301
+
+for i, url in enumerate(list(url_df["reviewlinks"][start:end])):
+    print(i, url)
 
     driver.get(url[:-24])
     time.sleep(0.5)
@@ -77,11 +81,11 @@ for i, url in enumerate(list(url_df["reviewlinks"][:335])):
     print(f"{review}")
 
     reviews.append(review)
-    titles.append(url_df["titles"][i])
+    titles.append(url_df["titles"][i+211])
 
-    if i % 30 == 0:
+    if (i+1) % 30 == 0:
         temp_df = pd.DataFrame({"titles": titles, "reviews": reviews})
-        temp_df.to_csv(f"../review_data_{i}.csv", index=False)
+        temp_df.to_csv(f"../review_data_{i+211}.csv", index=False)
 
         titles = []
         reviews = []
