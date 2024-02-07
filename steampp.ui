@@ -25,7 +25,7 @@
     <rect>
      <x>180</x>
      <y>20</y>
-     <width>391</width>
+     <width>501</width>
      <height>51</height>
     </rect>
    </property>
@@ -40,8 +40,11 @@
    <property name="text">
     <string>오직! 당신만을 위한!! 게임 추천!!!</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
   </widget>
-  <widget class="QComboBox" name="comboBox">
+  <widget class="QComboBox" name="cmb_gamelist">
    <property name="geometry">
     <rect>
      <x>180</x>
@@ -61,11 +64,6 @@
 background-color:rgb(49, 98, 130);
 
 selection-background-color: rgb(49, 98, 130);
-
-QListView
-{
-	color: rgb(255, 255, 255);
-}
 
 
 
@@ -94,8 +92,8 @@ QListView
     <rect>
      <x>540</x>
      <y>90</y>
-     <width>181</width>
-     <height>61</height>
+     <width>141</width>
+     <height>60</height>
     </rect>
    </property>
    <property name="font">
@@ -108,17 +106,20 @@ QListView
 background-color:rgb(84, 156, 200);</string>
    </property>
    <property name="text">
-    <string>추천</string>
+    <string>추천       </string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>500</y>
+     <x>20</x>
+     <y>240</y>
      <width>701</width>
-     <height>390</height>
+     <height>381</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:rgba(255, 255, 255, 30)</string>
    </property>
    <property name="text">
     <string/>
@@ -127,9 +128,9 @@ background-color:rgb(84, 156, 200);</string>
   <widget class="QLineEdit" name="le_keyword">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>180</x>
      <y>180</y>
-     <width>711</width>
+     <width>351</width>
      <height>41</height>
     </rect>
    </property>
@@ -146,18 +147,20 @@ background-color:rgb(84, 156, 200);</string>
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>230</y>
-     <width>691</width>
-     <height>261</height>
+     <y>240</y>
+     <width>701</width>
+     <height>381</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>17</pointsize>
+     <pointsize>20</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
+    <string notr="true">background-color:rgba(255, 255, 255, 80)</string>
    </property>
    <property name="text">
     <string>추천 목록</string>
@@ -169,7 +172,7 @@ background-color:rgb(84, 156, 200);</string>
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>550</x>
+     <x>620</x>
      <y>100</y>
      <width>41</width>
      <height>41</height>
@@ -180,6 +183,21 @@ background-color:rgb(84, 156, 200);</string>
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cmb_genrelist">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>180</y>
+     <width>151</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+
+background-color:rgb(49, 98, 130);</string>
    </property>
   </widget>
  </widget>
