@@ -37,7 +37,7 @@ for i, url in enumerate(list(url_df["reviewlinks"][start:end])):
     driver.get(url[:-24])
     time.sleep(0.5)
 
-    pyautogui.hotkey("shift", "f10")
+    pyautogui.hotkey("shift", "f10")  # 활성화된 창에 키 입력
     pyautogui.hotkey("t")
 
     time.sleep(1)
@@ -55,37 +55,21 @@ for i, url in enumerate(list(url_df["reviewlinks"][start:end])):
 
     print(f"리뷰 개수 : {len(reviews_temp)}")
 
-    for j in range(len(reviews_temp)):
+    for j in range(len(reviews_temp)):  # 모든 리뷰에 대해
         target_review = reviews_temp[j].text
 
-        cleand_review = re.sub("[^가-힣]", " ", target_review)
+        cleand_review = re.sub("[^가-힣]", " ", target_review)  # 정규식 적용
 
-        review = review + " " + cleand_review.strip()
-
-    # for j in range(1, 201):
-    #
-    #     print(f"\r{j}/200", end="")
-    #
-    #     review_xpath = f'//*[@id="page_1_row_1_template_twoSmall"]/div[{j}]/div[1]/div[1]/div[3]'
-    #
-    #     try:
-    #         review_text = driver.find_element(By.XPATH, review_xpath).text
-    #
-    #         review_text = re.sub("[^가-힣]", " ", review_text)
-    #
-    #         review = review + " " + review_text
-    #
-    #     except:
-    #         pass
+        review = review + " " + cleand_review.strip()  # 공백 제거
 
     print(f"{review}")
 
     reviews.append(review)
-    titles.append(url_df["titles"][i+211])
+    titles.append(url_df["titles"][i])
 
-    if (i+1) % 30 == 0:
+    if (i+1) % 30 == 0:  # 30개 마다 저장
         temp_df = pd.DataFrame({"titles": titles, "reviews": reviews})
-        temp_df.to_csv(f"../review_data_{i+211}.csv", index=False)
+        temp_df.to_csv(f"../review_data_{i}.csv", index=False)
 
         titles = []
         reviews = []

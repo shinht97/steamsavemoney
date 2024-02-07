@@ -6,15 +6,17 @@ game_df = pd.read_csv("../steam.csv")
 
 game_df.reset_index(inplace=True)
 
-files = glob.glob("../review_data*.csv")
+files = glob.glob("../crawled_data/review_data*.csv")  # 지정한 형식과 같은 모든 파일의 경로를 리스트로 만듬
 
 full_df = pd.DataFrame()
 
 for file in files:
-    if file.count("_") != 3:
+    if file.count("_") != 3:  # 파일 형식에 따라 '_'가 세개가 안되는 경우
         temp_df = pd.read_csv(file)
         full_df = pd.concat([full_df, temp_df], ignore_index=True)
 
+
+# review_data_334_667, 667_1001의 경우 게임 타이틀이 안 들어가 있음, 이를 위해 분리 하여 다시 만듬
 df_334 = pd.read_csv("../review_data_334_667.csv")
 
 df_334.reset_index(inplace=True)
@@ -22,7 +24,7 @@ df_334.reset_index(inplace=True)
 print(len(game_df["titles"][334:665]))
 print(len(df_334["reviews"]))
 
-df_temp1 = pd.DataFrame({"titles" : list(game_df["titles"][334:665]), "reviews" : list(df_334["reviews"])})
+df_temp1 = pd.DataFrame({"titles": list(game_df["titles"][334:665]), "reviews": list(df_334["reviews"])})
 
 full_df = pd.concat([full_df, df_temp1], ignore_index=True)
 

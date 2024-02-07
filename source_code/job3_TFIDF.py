@@ -3,7 +3,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from scipy.io import mmwrite, mmread
 import pickle
 
-df_review = pd.read_csv('../cleaned_review.csv')
+df_review = pd.read_csv('../games_with_review_and_genre.csv')
 df_review.info()
 
 Tfidf = TfidfVectorizer(sublinear_tf=True)
