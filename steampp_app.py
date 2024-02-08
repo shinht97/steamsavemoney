@@ -187,10 +187,25 @@ class secondWindow(QDialog, recommend_window):  # 새 창을 위한 클래스
         super(secondWindow, self).__init__()
         self.setupUi(self)
         self.show()
+
         print(recommendation)
         self.label_image.setPixmap(QPixmap("./ssteam.png"))
         self.label_image.setScaledContents(True)
-        self.lbl_recommendation.setText(recommendation)
+
+        self.game_df = pd.read_csv("./steam.csv")
+
+        linked_list = []
+
+        for reco in recommendation.split("\n"):
+            game_idx = self.game_df[self.game_df['titles'] == reco].index[0]
+
+            linked_list.append(f'<a href="{self.game_df.at[game_idx, "gamelinks"]}">{reco}</a>')
+
+        view_text = "<br>".join(linked_list)
+        print(view_text)
+        self.lbl_recommendation.setOpenExternalLinks(True)
+        self.lbl_recommendation.setText(view_text)
+
 
 
 if __name__ == '__main__':
